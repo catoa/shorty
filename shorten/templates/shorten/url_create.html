@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+    <form id="shorten-url-form" method="POST" action="">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input class="btn btn-primary" type="submit" value="Shorten">
+    </form>
+
+    <a href="http://{{ request.get_host }}/{{ object.shortened_id }}">New link</a>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'shorten/url_create.js' %}"></script>
+{% endblock %}
